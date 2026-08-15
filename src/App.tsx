@@ -562,7 +562,7 @@ function App() {
     if (sortMode === SortMode.SiteSort && currentSortingGroupId) {
       // 查找被拖拽的站点
       const currentGroup = groups.find(g => g.id === currentSortingGroupId);
-      const draggedSite = currentGroup?.sites?.find(s => s.id?.toString() === activeId);
+      const draggedSite = currentGroup?.sites?.find(s => `site-${s.id}` === activeId);
       
       if (draggedSite) {
         setDraggedSite({
@@ -670,8 +670,8 @@ function App() {
         if (currentSortingGroupId) {
           const currentGroup = groups.find(g => g.id === currentSortingGroupId);
           if (currentGroup?.sites) {
-            const oldIndex = currentGroup.sites.findIndex(site => site.id?.toString() === active.id);
-            const newIndex = currentGroup.sites.findIndex(site => site.id?.toString() === over.id);
+            const oldIndex = currentGroup.sites.findIndex(site => `site-${site.id}` === active.id);
+            const newIndex = currentGroup.sites.findIndex(site => `site-${site.id}` === over.id);
             
             if (oldIndex !== -1 && newIndex !== -1) {
               const newSites = arrayMove(currentGroup.sites, oldIndex, newIndex);
