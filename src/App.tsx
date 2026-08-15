@@ -655,10 +655,9 @@ function App() {
         if (!isNaN(targetGroupId)) {
           // 如果拖拽到其他分组的标题
           if (targetGroupId !== currentSortingGroupId) {
-            // 确认是否要移动站点
             const targetGroup = groups.find(g => g.id === targetGroupId);
             
-            if (targetGroup && window.confirm(`确定要将站点 "${draggedSite.site.name}" 从分组 "${draggedSite.sourceGroupName}" 移动到分组 "${targetGroup.name}" 吗？`)) {
+            if (targetGroup) {
               // 移动站点到新分组
               await handleTransferSite(draggedSite.site.id!, targetGroupId);
             }
