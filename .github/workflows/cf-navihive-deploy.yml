@@ -26,15 +26,17 @@ jobs:
           node-version: '22'
           cache: 'pnpm'
 
+      - name: Configure pnpm to ignore build scripts
+        run: pnpm config set ignore-scripts true
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        env:
-          PNPM_IGNORE_BUILDS: true
+
+      - name: Reset pnpm config
+        run: pnpm config set ignore-scripts false
 
       - name: Build
         run: pnpm run build
-        env:
-          PNPM_IGNORE_BUILDS: true
 
       - name: Deploy to Cloudflare
         run: pnpm run deploy
