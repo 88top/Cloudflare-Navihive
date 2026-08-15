@@ -88,6 +88,8 @@
 
 **开发**: pnpm • Wrangler CLI • ESLint + Prettier
 
+---
+
 ## 🚀 部署指南
 4. 在"自定义域(Custom Domains)"部分，点击"添加自定义域"
 5. 输入您想使用的域名，并按照指示完成 DNS 配置
