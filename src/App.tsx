@@ -690,7 +690,6 @@ function App() {
   // 处理站点转移到其他分组
   const handleTransferSite = async (siteId: number, targetGroupId: number) => {
     try {
-      // 找到站点
       const allSites = groups.flatMap(g => g.sites || []);
       const site = allSites.find(s => s.id === siteId);
       
@@ -699,30 +698,32 @@ function App() {
         return;
       }
       
-      // 获取目标分组中的站点数量，确定新的order_num
       const targetGroup = groups.find(g => g.id === targetGroupId);
       const targetGroupSiteCount = targetGroup?.sites?.length || 0;
       
-      // 更新站点的分组ID
       const updatedSite = {
         ...site,
         group_id: targetGroupId,
-        order_num: targetGroupSiteCount, // 放到新分组的最后面
+        order_num: targetGroupSiteCount,
       };
       
-      // 调用API更新站点
+      // 先在本地直接更新 UI，不等接口、不整体刷新，避免转圈/整体重渲染
+      setGroups(prevGroups =>
+        prevGroups.map(g => {
+          if (g.id === site.group_id) {
+            // 原分组：移除这个站点
+            return { ...g, sites: g.sites.filter(s => s.id !== siteId) };
+          }
+          if (g.id === targetGroupId) {
+            // 目标分组：追加这个站点到末尾
+            return { ...g, sites: [...g.sites, updatedSite] };
+          }
+          return g;
+        })
+      );
+      
+      // 调用API持久化，失败了再兜底重新拉取真实数据纠正
       await api.updateSite(siteId, updatedSite);
-      
-      // 记录当前滚动位置，避免 fetchData 触发的 loading 状态导致页面跳到顶部
-      const scrollY = window.scrollY;
-      
-      // 重新加载数据
-      await fetchData();
-      
-      // 恢复滚动位置（等 DOM 更新完成后再执行）
-      requestAnimationFrame(() => {
-        window.scrollTo(0, scrollY);
-      });
       
       setSnackbarMessage(`站点 "${site.name}" 已成功移动到新分组`);
       setSnackbarOpen(true);
@@ -730,6 +731,8 @@ function App() {
     } catch (error) {
       console.error('移动站点失败:', error);
       handleError('移动站点失败: ' + (error as Error).message);
+      // 出错时重新拉取数据，纠正本地状态和服务器不一致的问题
+      await fetchData();
     }
   };
 
@@ -1327,13 +1330,17 @@ function App() {
                   )}
                   <Button
                       variant='outlined'
-                      color='inherit'
-                      startIcon={<CancelIcon />}
                       onClick={cancelSort}
                       size='small'
                       sx={{
                         minWidth: 'auto',
                         fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                        color: 'text.secondary',
+                        borderColor: 'divider',
+                        '&:hover': {
+                          borderColor: 'text.secondary',
+                          backgroundColor: 'action.hover',
+                        },
                       }}
                     >
                       取消编辑
