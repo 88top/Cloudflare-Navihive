@@ -27,14 +27,14 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
-
-      # 关键：批准构建脚本
-      - name: Approve build scripts
-        run: pnpm approve-builds --all
+        run: pnpm install --frozen-lockfile
+        env:
+          PNPM_IGNORE_BUILDS: true
 
       - name: Build
         run: pnpm run build
+        env:
+          PNPM_IGNORE_BUILDS: true
 
       - name: Deploy to Cloudflare
         run: pnpm run deploy
