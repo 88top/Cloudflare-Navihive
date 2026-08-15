@@ -713,8 +713,16 @@ function App() {
       // 调用API更新站点
       await api.updateSite(siteId, updatedSite);
       
+      // 记录当前滚动位置，避免 fetchData 触发的 loading 状态导致页面跳到顶部
+      const scrollY = window.scrollY;
+      
       // 重新加载数据
       await fetchData();
+      
+      // 恢复滚动位置（等 DOM 更新完成后再执行）
+      requestAnimationFrame(() => {
+        window.scrollTo(0, scrollY);
+      });
       
       setSnackbarMessage(`站点 "${site.name}" 已成功移动到新分组`);
       setSnackbarOpen(true);
