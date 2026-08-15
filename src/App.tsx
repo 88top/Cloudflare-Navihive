@@ -1329,17 +1329,12 @@ function App() {
                   )}
                   <Button
                       variant='outlined'
+                      color='primary'
                       onClick={cancelSort}
                       size='small'
                       sx={{
                         minWidth: 'auto',
                         fontSize: { xs: '0.75rem', sm: '0.875rem' },
-                        color: 'text.secondary',
-                        borderColor: 'divider',
-                        '&:hover': {
-                          borderColor: 'text.secondary',
-                          backgroundColor: 'action.hover',
-                        },
                       }}
                     >
                       取消编辑
