@@ -88,6 +88,41 @@
 
 **开发**: pnpm • Wrangler CLI • ESLint + Prettier
 
+## 🚀 部署指南
+4. 在"自定义域(Custom Domains)"部分，点击"添加自定义域"
+5. 输入您想使用的域名，并按照指示完成 DNS 配置
+## 🔧 常见问题解答
+**Q: 我忘记了管理员密码，怎么办？**  
+A: 您可以通过修改环境变量重置密码。在 Cloudflare 控制面板中，进入您的项目，点击"设置" > "环境变量"，修改`AUTH_PASSWORD`的值。
+**Q: 我想关闭登录认证，可以吗？**  
+A: 可以。将环境变量`AUTH_ENABLED`设置为`false`即可关闭认证功能。
+**Q: 部署后如何更新到最新版本？**  
+A: 如果使用的是一键部署，可以再次点击部署按钮；如果是手动部署，拉取最新代码后重新构建并部署。
+**Q: 我想备份我的数据，应该怎么做？**  
+A: 您可以使用 Wrangler 工具导出 D1 数据库：
+```bash
+wrangler d1 database export navigation-db
+```
+**Q: 数据库结构是什么样的？**  
+A: NaviHive 使用两个主要表格：
+-   `groups`: 存储分组信息
+-   `sites`: 存储网站信息
+-   `configs`: 存储配置信息
+## 🗂️ 项目结构
+```
+├── worker/               # Cloudflare Workers函数
+│   └── index.ts          # Workers入口文件
+├── public/               # 静态资源
+├── src/                  # 前端源码
+│   ├── API/              # API客户端
+│   ├── components/       # React组件
+│   └── App.tsx           # 主应用组件
+├── wrangler.jsonc        # Cloudflare Workers配置
+├── vite.config.ts        # Vite配置文件
+├── package.json          # 项目依赖
+└── README.md             # 项目说明
+```
+
 ## 🤝 贡献
 
 欢迎所有形式的贡献！查看 [贡献指南](https://zqq-nuli.github.io/Cloudflare-Navihive/contributing/) 了解如何参与项目。
