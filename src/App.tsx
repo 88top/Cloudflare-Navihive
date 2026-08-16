@@ -671,7 +671,8 @@ function App() {
             const oldIndex = currentGroup.sites.findIndex(site => `site-${site.id}` === active.id);
             const newIndex = currentGroup.sites.findIndex(site => `site-${site.id}` === over.id);
             
-            if (oldIndex !== -1 && newIndex !== -1) {
+            // 只有位置真正发生变化时才保存，放回原位不触发任何刷新
+            if (oldIndex !== -1 && newIndex !== -1 && oldIndex !== newIndex) {
               const newSites = arrayMove(currentGroup.sites, oldIndex, newIndex);
               await handleSaveSiteOrder(currentSortingGroupId, newSites);
             }
@@ -1568,7 +1569,7 @@ function App() {
                         sx={{
                           // 修复：添加显著的视觉反馈
                           border: dragOverGroupId === group.id && isOverGroupHeader ? '3px dashed #1976d2' : 'none',
-                          borderRadius: 1,
+                          borderRadius: 4,
                           transition: 'all 0.3s ease',
                           backgroundColor: dragOverGroupId === group.id && isOverGroupHeader 
                             ? (darkMode ? 'rgba(25, 118, 210, 0.2)' : 'rgba(25, 118, 210, 0.08)')
