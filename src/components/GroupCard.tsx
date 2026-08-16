@@ -226,9 +226,7 @@ const GroupCard: React.FC<GroupCardProps> = ({
       console.error('分组 ID 不存在,无法开始排序');
       return;
     }
-    if (group.sites.length < 2) {
-      setSnackbarMessage('至少需要2个站点才能进行排序');
-      setSnackbarOpen(true);
+    if (group.sites.length < 1) {
       return;
     }
     // 确保分组展开
