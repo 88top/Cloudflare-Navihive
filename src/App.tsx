@@ -502,6 +502,13 @@ function App() {
     try {
       console.log('保存站点排序', groupId, sites);
 
+      // 分组内已无站点（比如站点被拖到了别的分组），无需调用接口，直接视为成功
+      if (sites.length === 0) {
+        setSortMode(SortMode.None);
+        setCurrentSortingGroupId(null);
+        return;
+      }
+
       // 构造需要更新的站点顺序数据
       const siteOrders = sites.map((site, index) => ({
         id: site.id as number,
