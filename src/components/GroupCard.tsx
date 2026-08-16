@@ -13,8 +13,6 @@ import {
   Box,
   IconButton,
   Tooltip,
-  Snackbar,
-  Alert,
   Collapse,
 } from '@mui/material';
 import SortIcon from '@mui/icons-material/Sort';
@@ -61,9 +59,6 @@ const GroupCard: React.FC<GroupCardProps> = ({
 }) => {
   // 添加编辑弹窗的状态
   const [editDialogOpen, setEditDialogOpen] = useState(false);
-  // 添加提示消息状态
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
   // 添加折叠状态
   const [isCollapsed, setIsCollapsed] = useState(() => {
     const savedState = localStorage.getItem(`group-${group.id}-collapsed`);
@@ -236,11 +231,6 @@ const GroupCard: React.FC<GroupCardProps> = ({
     onStartSiteSort(group.id);
   };
 
-  // 关闭提示消息
-  const handleCloseSnackbar = () => {
-    setSnackbarOpen(false);
-  };
-
   // 修改分组标题区域的渲染
   return (
     <Paper
@@ -407,12 +397,6 @@ const GroupCard: React.FC<GroupCardProps> = ({
         />
       )}
 
-      {/* 提示消息 */}
-      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-        <Alert onClose={handleCloseSnackbar} severity='info' sx={{ width: '100%' }}>
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
     </Paper>
   );
 };
