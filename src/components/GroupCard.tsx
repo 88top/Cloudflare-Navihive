@@ -239,7 +239,6 @@ const GroupCard: React.FC<GroupCardProps> = ({
         borderRadius: 4,
         p: { xs: 2, sm: 3 },
         transition: 'all 0.3s ease-in-out',
-        border: '1px solid transparent',
         '&:hover': {
           boxShadow: sortMode === 'None' ? 6 : 3,
           borderColor: 'divider',
