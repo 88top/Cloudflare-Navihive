@@ -245,9 +245,10 @@ const GroupCard: React.FC<GroupCardProps> = ({
           borderColor: 'divider',
           transform: sortMode === 'None' ? 'scale(1.01)' : 'none',
         },
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'dark' ? 'rgba(33, 33, 33, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(5px)',
+        backgroundColor: 'rgba(255, 255, 255, 0.45)',
+        backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
+        border: '1px solid rgba(255, 255, 255, 0.6)',
       }}
     >
       <Box
