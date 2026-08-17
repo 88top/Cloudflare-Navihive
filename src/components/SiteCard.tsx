@@ -109,8 +109,6 @@ const SiteCard = memo(function SiteCard({
           flexDirection: 'column',
           borderRadius: 3,
           transition: 'box-shadow 0.3s ease-in-out',
-          border: '1px solid',
-          borderColor: 'divider',
           boxShadow: isDragging ? 8 : 2,
           '&:hover': !isEditMode
             ? {
