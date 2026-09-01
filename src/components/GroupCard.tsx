@@ -159,6 +159,8 @@ const GroupCard: React.FC<GroupCardProps> = ({
                     viewMode={viewMode}
                     index={idx}
                     iconApi={configs?.['site.iconApi']} // 传入iconApi配置
+                    frostedGlassEnabled={configs?.['site.frostedGlass'] === 'true'}
+                    hasBackgroundImage={!!configs?.['site.backgroundImage']}
                   />
                 </Box>
               ))}
