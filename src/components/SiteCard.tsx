@@ -146,6 +146,12 @@ const SiteCard = memo(function SiteCard({
           '&:hover .site-title': !isEditMode
             ? { transform: 'scale(1.15)', transitionDelay: '0.1s' }
             : {},
+          '& .site-title-row': {
+            transition: 'padding-right 0.3s ease',
+          },
+          '&:hover .site-title-row': !isEditMode && viewMode === 'edit'
+            ? { paddingRight: 'calc(1em + 28px)', transitionDelay: '0.05s' } // 28px ≈ 齿轮按钮本身宽度，1em ≈ 多空一个汉字
+            : {},
         }}
       >
         {isEditMode ? (
