@@ -1952,7 +1952,7 @@ function App() {
                   onChange={(_, value) => {
                     if (!value) return;
                     const presets: Record<string, string> = {
-                      gradient: 'linear-gradient(135deg, #dce8f7 0%, #a9c6e8 100%)',
+                      gradient: 'linear-gradient(135deg, #b8d0ea 0%, #6b93bf 100%)',
                       bing: 'https://bing.biturl.top/?resolution=1920&format=image&index=0&mkt=zh-CN',
                       random: `https://picsum.photos/1920/1080?random=${Date.now()}`,
                     };
