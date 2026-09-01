@@ -39,6 +39,9 @@ interface GroupCardProps {
   // 新增：接收跨组拖拽悬停状态
   dragOverGroupId?: number | null;
   isOverGroupHeader?: boolean;
+  // 新增：毛玻璃效果开关与是否有背景图
+  frostedGlassEnabled?: boolean;
+  hasBackgroundImage?: boolean;
 }
 
 const GroupCard: React.FC<GroupCardProps> = ({
