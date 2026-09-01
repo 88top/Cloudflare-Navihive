@@ -253,10 +253,20 @@ const GroupCard: React.FC<GroupCardProps> = ({
           borderColor: 'divider',
           transform: sortMode === 'None' ? 'scale(1.01)' : 'none',
         },
-        backgroundColor: 'rgba(255, 255, 255, 0.45)',
-        backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
-        border: '1px solid rgba(255, 255, 255, 0.6)',
+        ...(frostedGlassEnabled && hasBackgroundImage
+          ? {
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? 'rgba(30, 30, 30, 0.45)'
+                  : 'rgba(255, 255, 255, 0.45)',
+              backdropFilter: 'blur(14px)',
+              WebkitBackdropFilter: 'blur(14px)',
+              border: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? '1px solid rgba(255, 255, 255, 0.12)'
+                  : '1px solid rgba(255, 255, 255, 0.6)',
+            }
+          : {}),
       }}
     >
       <Box
