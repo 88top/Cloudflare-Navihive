@@ -115,19 +115,37 @@ const SiteCard = memo(function SiteCard({
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          borderRadius: 3,
+          borderRadius: 'var(--card-radius)',
           transition: 'box-shadow 0.3s ease-in-out',
           boxShadow: isDragging ? 8 : 2,
+          overflow: 'hidden',
+          contain: 'content',
+          backfaceVisibility: 'hidden',
+          transform: isDragging ? undefined : 'translateZ(0)', // 拖拽中不加，避免和 dnd-kit 的 transform 冲突
+          ...(frosted && {
+            backgroundColor: isDark ? 'rgba(30, 41, 59, 0.4)' : 'rgba(255, 255, 255, 0.45)',
+            backdropFilter: 'blur(var(--frosted-glass-blur))',
+            WebkitBackdropFilter: 'blur(var(--frosted-glass-blur))',
+            border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(255,255,255,0.6)',
+          }),
           '&:hover': !isEditMode
             ? {
                 boxShadow: 5,
               }
             : {},
-          overflow: 'hidden',
-          backgroundColor: 'rgba(255, 255, 255, 0.45)',
-          backdropFilter: 'blur(14px)',
-          WebkitBackdropFilter: 'blur(14px)',
-          border: '1px solid rgba(255, 255, 255, 0.6)',
+          '& .site-icon': {
+            transition: 'width 0.3s ease, opacity 0.3s ease, margin 0.3s ease',
+          },
+          '&:hover .site-icon': !isEditMode
+            ? { width: 0, opacity: 0, marginRight: 0, transitionDelay: '0.1s' }
+            : {},
+          '& .site-title': {
+            transformOrigin: 'left center',
+            transition: 'transform 0.3s ease',
+          },
+          '&:hover .site-title': !isEditMode
+            ? { transform: 'scale(1.15)', transitionDelay: '0.1s' }
+            : {},
         }}
       >
         {isEditMode ? (
