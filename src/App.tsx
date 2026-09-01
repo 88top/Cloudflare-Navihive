@@ -1611,6 +1611,8 @@ function App() {
                           configs={configs}
                           dragOverGroupId={dragOverGroupId}
                           isOverGroupHeader={isOverGroupHeader}
+                          frostedGlassEnabled={configs['site.frostedGlass'] === 'true'}
+                          hasBackgroundImage={!!configs['site.backgroundImage']}
                         />
                       </Box>
                     ))}
