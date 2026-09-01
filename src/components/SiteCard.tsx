@@ -307,6 +307,7 @@ const SiteCard = memo(function SiteCard({
                   noWrap
                   sx={{
                     fontSize: { xs: '0.875rem', sm: '1rem' },
+                    minWidth: 0, // 修复 flex 布局下 noWrap 不生效、文字冲破卡片边界的问题
                   }}
                 >
                   {site.name}
