@@ -96,6 +96,7 @@ const DEFAULT_CONFIGS = {
   'site.customCss': '',
   'site.backgroundImage': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1920&auto=format&fit=crop', // 背景图片URL
   'site.backgroundOpacity': '0.2', // 背景蒙版透明度
+  'site.frostedGlass': 'false', // 是否启用毛玻璃卡片（仅在有背景图时生效，默认关闭避免存量用户升级后视觉突变）
   'site.iconApi': 'https://www.faviconextractor.com/favicon/{domain}?larger=true', // 默认使用的API接口，带上 ?larger=true 参数可以获取最大尺寸的图标
   'site.searchBoxEnabled': 'true', // 是否启用搜索框
   'site.searchBoxGuestEnabled': 'true', // 访客是否可以使用搜索框
