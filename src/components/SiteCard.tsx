@@ -253,7 +253,7 @@ const SiteCard = memo(function SiteCard({
               {/* 图标和名称 */}
               <Box display='flex' alignItems='center' mb={1}>
                 {!iconError && site.icon ? (
-                  <Box position='relative' mr={1.5} width={32} height={32} flexShrink={0}>
+                  <Box className='site-icon' position='relative' mr={1.5} width={32} height={32} flexShrink={0}>
                     <Skeleton
                       variant='rounded'
                       width={32}
