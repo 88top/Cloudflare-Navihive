@@ -1247,7 +1247,9 @@ function App() {
         }}
       >
         {/* 背景图片 */}
-        {configs['site.backgroundImage'] && isSecureUrl(configs['site.backgroundImage']) && (
+        {configs['site.backgroundImage'] &&
+          (configs['site.backgroundImage'].startsWith('linear-gradient(') ||
+            isSecureUrl(configs['site.backgroundImage'])) && (
           <>
             <Box
               sx={{
@@ -1256,7 +1258,9 @@ function App() {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                backgroundImage: `url(${configs['site.backgroundImage']})`,
+                backgroundImage: configs['site.backgroundImage'].startsWith('linear-gradient(')
+                  ? configs['site.backgroundImage']
+                  : `url(${configs['site.backgroundImage']})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
