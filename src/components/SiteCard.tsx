@@ -251,7 +251,7 @@ const SiteCard = memo(function SiteCard({
               }}
             >
               {/* 图标和名称 */}
-              <Box display='flex' alignItems='center' mb={1} pr={viewMode === 'edit' ? 4 : 0}>
+              <Box className='site-title-row' display='flex' alignItems='center' mb={1}>
                 {!iconError && site.icon ? (
                   <Box className='site-icon' position='relative' mr={1.5} width={32} height={32} flexShrink={0}>
                     <Skeleton
