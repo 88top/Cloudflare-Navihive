@@ -201,6 +201,8 @@ const GroupCard: React.FC<GroupCardProps> = ({
               isEditMode={false}
               viewMode={viewMode}
               iconApi={configs?.['site.iconApi']} // 传入iconApi配置
+              frostedGlassEnabled={configs?.['site.frostedGlass'] === 'true'}
+              hasBackgroundImage={!!configs?.['site.backgroundImage']}
             />
           </Box>
         ))}
