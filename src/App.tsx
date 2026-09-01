@@ -93,7 +93,7 @@ enum SortMode {
 
 // 默认配置
 const DEFAULT_CONFIGS = {
-  'site.title': '',
+  'site.title': '导航站',
   'site.name': '',
   'site.customCss': '',
   'site.backgroundImage': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1920&auto=format&fit=crop', // 背景图片URL
