@@ -1944,18 +1944,38 @@ function App() {
                 <Typography variant='subtitle1' gutterBottom>
                   背景图片设置
                 </Typography>
+
+                <Typography variant='caption' color='text.secondary' sx={{ display: 'block', mb: 1 }}>
+                  快速预设（点击后会填入下方输入框，你也可以直接手动改）
+                </Typography>
+                <ToggleButtonGroup size='small' exclusive sx={{ mb: 2, flexWrap: 'wrap' }}
+                  onChange={(_, value) => {
+                    if (!value) return;
+                    const presets: Record<string, string> = {
+                      gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      bing: 'https://bing.biturl.top/?resolution=1920&format=image&index=0&mkt=zh-CN',
+                      random: `https://picsum.photos/1920/1080?random=${Date.now()}`,
+                    };
+                    setTempConfigs({ ...tempConfigs, 'site.backgroundImage': presets[value] });
+                  }}
+                >
+                  <ToggleButton value='gradient'>渐变色</ToggleButton>
+                  <ToggleButton value='bing'>Bing 每日</ToggleButton>
+                  <ToggleButton value='random'>随机图片</ToggleButton>
+                </ToggleButtonGroup>
+
                 <TextField
                   margin='dense'
                   id='site-background-image'
                   name='site.backgroundImage'
-                  label='背景图片URL'
-                  type='url'
+                  label='背景图片URL 或 渐变值'
+                  type='text'
                   fullWidth
                   variant='outlined'
                   value={tempConfigs['site.backgroundImage']}
                   onChange={handleConfigInputChange}
                   placeholder='https://example.com/background.jpg'
-                  helperText='输入图片URL，留空则不使用背景图片'
+                  helperText='输入图片URL，或点上方预设按钮；留空则不使用背景'
                 />
 
                 <Box sx={{ mt: 2, mb: 1 }}>
@@ -1986,6 +2006,30 @@ function App() {
                     值越大，背景图片越清晰，内容可能越难看清
                   </Typography>
                 </Box>
+
+                <FormControlLabel
+                  sx={{ mt: 1 }}
+                  control={
+                    <Switch
+                      checked={tempConfigs['site.frostedGlass'] === 'true'}
+                      onChange={(e) =>
+                        setTempConfigs({
+                          ...tempConfigs,
+                          'site.frostedGlass': e.target.checked ? 'true' : 'false',
+                        })
+                      }
+                      color='primary'
+                    />
+                  }
+                  label={
+                    <Box>
+                      <Typography variant='body1'>毛玻璃卡片</Typography>
+                      <Typography variant='caption' color='text.secondary'>
+                        仅在设置了背景图片时生效，未设置背景图时该开关不起作用
+                      </Typography>
+                    </Box>
+                  }
+                />
               </Box>
               {/* 搜索框功能设置 */}
               <Box sx={{ mb: 1 }}>
