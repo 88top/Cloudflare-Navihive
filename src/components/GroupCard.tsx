@@ -59,6 +59,8 @@ const GroupCard: React.FC<GroupCardProps> = ({
   configs,
   dragOverGroupId = null,
   isOverGroupHeader = false,
+  frostedGlassEnabled = false,
+  hasBackgroundImage = false,
 }) => {
   // 添加编辑弹窗的状态
   const [editDialogOpen, setEditDialogOpen] = useState(false);
