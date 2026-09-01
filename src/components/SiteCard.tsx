@@ -27,6 +27,8 @@ interface SiteCardProps {
   viewMode?: 'readonly' | 'edit'; // 访问模式
   index?: number;
   iconApi?: string; // 添加iconApi属性
+  frostedGlassEnabled?: boolean; // 是否启用毛玻璃（用户开关）
+  hasBackgroundImage?: boolean; // 当前是否设置了背景图
 }
 
 // 使用memo包装组件以减少不必要的重渲染
