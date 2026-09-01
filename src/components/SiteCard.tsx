@@ -281,6 +281,7 @@ const SiteCard = memo(function SiteCard({
                   </Box>
                 ) : (
                   <Box
+                    className='site-icon'
                     sx={{
                       width: 32,
                       height: 32,
