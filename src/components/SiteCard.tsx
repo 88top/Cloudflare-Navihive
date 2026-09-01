@@ -14,6 +14,7 @@ import {
   IconButton,
   Box,
   Fade,
+  useTheme,
 } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
