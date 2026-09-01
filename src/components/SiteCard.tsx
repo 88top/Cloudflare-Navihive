@@ -40,10 +40,15 @@ const SiteCard = memo(function SiteCard({
   viewMode = 'edit', // 默认为编辑模式
   index = 0,
   iconApi, // 添加iconApi参数
+  frostedGlassEnabled = false,
+  hasBackgroundImage = false,
 }: SiteCardProps) {
   const [showSettings, setShowSettings] = useState(false);
   const [iconError, setIconError] = useState(!site.icon);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+  const frosted = frostedGlassEnabled && hasBackgroundImage;
 
   // 使用dnd-kit的useSortable hook
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
