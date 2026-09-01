@@ -300,6 +300,7 @@ const SiteCard = memo(function SiteCard({
                   </Box>
                 )}
                 <Typography
+                  className='site-title'
                   variant='subtitle1'
                   fontWeight='medium'
                   noWrap
