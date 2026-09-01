@@ -1956,7 +1956,9 @@ function App() {
                       bing: 'https://bing.biturl.top/?resolution=1920&format=image&index=0&mkt=zh-CN',
                       random: `https://picsum.photos/1920/1080?random=${Date.now()}`,
                     };
-                    setTempConfigs({ ...tempConfigs, 'site.backgroundImage': presets[value] });
+                    const preset = presets[value];
+                    if (!preset) return; // value 不在预设表里时直接忽略，避免类型报错
+                    setTempConfigs({ ...tempConfigs, 'site.backgroundImage': preset });
                   }}
                 >
                   <ToggleButton value='gradient'>渐变色</ToggleButton>
