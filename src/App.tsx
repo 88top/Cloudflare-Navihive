@@ -91,11 +91,11 @@ enum SortMode {
 
 // 默认配置
 const DEFAULT_CONFIGS = {
-  'site.title': '导航站',
-  'site.name': '导航站',
+  'site.title': '',
+  'site.name': '',
   'site.customCss': '',
-  'site.backgroundImage': '', // 背景图片URL
-  'site.backgroundOpacity': '0.15', // 背景蒙版透明度
+  'site.backgroundImage': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1920&auto=format&fit=crop', // 背景图片URL
+  'site.backgroundOpacity': '0.2', // 背景蒙版透明度
   'site.iconApi': 'https://www.faviconextractor.com/favicon/{domain}?larger=true', // 默认使用的API接口，带上 ?larger=true 参数可以获取最大尺寸的图标
   'site.searchBoxEnabled': 'true', // 是否启用搜索框
   'site.searchBoxGuestEnabled': 'true', // 访客是否可以使用搜索框
