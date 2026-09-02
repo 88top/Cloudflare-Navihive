@@ -976,9 +976,8 @@ function App() {
             throw new Error('导入文件格式错误：缺少站点数据');
           }
 
-          if (!importData.configs || typeof importData.configs !== 'object') {
-            throw new Error('导入文件格式错误：缺少配置数据');
-          }
+          // 导入功能不再处理网站配置：configs 字段是否存在、格式是否正确都不校验，
+          // 因为无论如何都不会被使用（见下方 5.5）
 
           // 关键修复：重新组织导入数据，确保正确的顺序和去重
           // 1. 按分组ID分组站点
